@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header.h">
+    <ClInclude Include="slovarik.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

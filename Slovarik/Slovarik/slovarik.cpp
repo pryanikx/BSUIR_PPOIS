@@ -1,81 +1,81 @@
-﻿#include "header.h"
+﻿#include "slovarik.h"
 
-Node::Node(string key, string rus)
+Slovo::Slovo(string eng, string rus)
 {
-    this->Key = key;
+    this->Eng = eng;
     this->Rus = rus;
     this->left = nullptr;
     this->right = nullptr;
 }
 
-Node* Dictionary::add(Node* node, string key, string rus)
+Slovo* Dictionary::add(Slovo* slovo, string eng, string rus)
 {
-    if (node == nullptr) {
+    if (slovo == nullptr) {
         this->size++;
-        return new Node(key, rus);
+        return new Slovo(eng, rus);
     }
-    if (key < node->Key) {
-        node->left = add(node->left, key, rus);
+    if (eng < slovo->Eng) {
+        slovo->left = add(slovo->left, eng, rus);
     }
-    else if (key > node->Key) {
-        node->right = add(node->right, key, rus);
+    else if (eng > slovo->Eng) {
+        slovo->right = add(slovo->right, eng, rus);
     }
     else {
-        node->Rus = rus;
+        slovo->Rus = rus;
     }
-    return node;
+    return slovo;
 }
 
-Node* Dictionary::find(Node* node, string key)
+Slovo* Dictionary::find(Slovo* slovo, string eng)
 {
-    if (node == nullptr) {
+    if (slovo == nullptr) {
         return nullptr;
     }
-    if (key < node->Key) {
-        return find(node->left, key);
+    if (eng < slovo->Eng) {
+        return find(slovo->left, eng);
     }
-    else if (key > node->Key) {
-        return find(node->right, key);
+    else if (eng > slovo->Eng) {
+        return find(slovo->right, eng);
     }
     else {
-        return node;
+        return slovo;
     }
 }
 
-Node* Dictionary::remove(Node* node, string key) {
-    if (node == nullptr) {
+Slovo* Dictionary::remove(Slovo* slovo, string eng) {
+    if (slovo == nullptr) {
         return nullptr;
     }
-    if (key < node->Key) {
-        node->left = remove(node->left, key);
+    if (eng < slovo->Eng) {
+        slovo->left = remove(slovo->left, eng);
     }
-    else if (key > node->Key) {
-        node->right = remove(node->right, key);
+    else if (eng > slovo->Eng) {
+        slovo->right = remove(slovo->right, eng);
     }
     else {
-        if (node->left == nullptr) {
-            Node* rChild = node->right;
-            delete node;
+        if (slovo->left == nullptr) {
+            Slovo* rChild = slovo->right;
+            delete slovo;
             size--;
             return rChild;
         }
-        else if (node->right == nullptr) {
-            Node* lChild = node->left;
-            delete node;
+        else if (slovo->right == nullptr) {
+            Slovo* lChild = slovo->left;
+            delete slovo;
             size--;
             return lChild;
         }
         else {
-            Node* minRight = node->right;
+            Slovo* minRight = slovo->right;
             while (minRight->left != nullptr) {
                 minRight = minRight->left;
             }
-            node->Key = minRight->Key;
-            node->Rus = minRight->Rus;
-            node->right = remove(node->right, minRight->Key);
+            slovo->Eng = minRight->Eng;
+            slovo->Rus = minRight->Rus;
+            slovo->right = remove(slovo->right, minRight->Eng);
         }
     }
-    return node;
+    return slovo;
 }
 
 Dictionary::Dictionary() {
@@ -87,56 +87,56 @@ int Dictionary::getSize()
     return size;
 }
 
-void Dictionary::add(string key, string value) {
-    root = add(root, key, value);
+void Dictionary::add(string eng, string value) {
+    root = add(root, eng, value);
 }
 
-void Dictionary::add(const char* key, const char* rus) {
-    string keyStr(key);
+void Dictionary::add(const char* eng, const char* rus) {
+    string engStr(eng);
     string rusStr(rus);
-    add(keyStr, rusStr);
+    add(engStr, rusStr);
 }
 
-string Dictionary::find(string key) {
-    Node* node = find(root, key);
-    if (node == nullptr) {
+string Dictionary::find(string eng) {
+    Slovo* slovo = find(root, eng);
+    if (slovo == nullptr) {
         return "";
     }
     else {
-        return node->Rus;
+        return slovo->Rus;
     }
 }
 
-string Dictionary::operator[](const string& key) {
-    Node* node = find(root, key);
-    if (node == nullptr)
+string Dictionary::operator[](const string& eng) {
+    Slovo* slovo = find(root, eng);
+    if (slovo == nullptr)
     {
         return "";
     }
 
     else
     {
-        return node->Rus;
+        return slovo->Rus;
     }
 }
 
-void Dictionary::changeTranslation(string key, string rus_2)
+void Dictionary::changeTranslation(string eng, string newRus)
 {
-    Node* node = find(root, key);
-    if (node == nullptr)
-        node = add(root, key, rus_2);
+    Slovo* slovo = find(root, eng);
+    if (slovo == nullptr)
+        slovo = add(root, eng, newRus);
     else
-        node->Rus = rus_2;
+        slovo->Rus = newRus;
 }
 
-void Dictionary::remove(string key) {
-    root = remove(root, key);
+void Dictionary::remove(string eng) {
+    root = remove(root, eng);
 }
 
 void Dictionary::loadFile(const string& filename)
 {
     ifstream file(filename);
-    string Key;
+    string Eng;
     string Rus;
 
     if (!file.is_open()) {
@@ -146,10 +146,10 @@ void Dictionary::loadFile(const string& filename)
     {
         while (!file.eof())
         {
-            Key = "";
+            Eng = "";
             Rus = "";
-            file >> Key >> Rus;
-            add(Key, Rus);
+            file >> Eng >> Rus;
+            add(Eng, Rus);
         }
     }
     file.close();
