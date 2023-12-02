@@ -1,22 +1,8 @@
 #pragma once
+#include "Slovo.h"
 
-#include<iostream>
-#include<string>
-#include<fstream>
 
-using namespace std;
-
-class Slovo {
-public:
-    string Eng;
-    string Rus;
-    Slovo* left;
-    Slovo* right;
-
-    Slovo(string eng, string rus);
-};
-
-class Dictionary {
+class Slovarik {
 private:
     Slovo* root;
     int size = 0;
@@ -28,7 +14,7 @@ private:
     Slovo* remove(Slovo* slovo, string eng);
 
 public:
-    Dictionary();
+    Slovarik();
 
     int getSize();
 

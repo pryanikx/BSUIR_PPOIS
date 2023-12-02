@@ -12,7 +12,7 @@ namespace SlovarikTest
 		
 		TEST_METHOD(SizeCheckTest)
 		{
-			Dictionary slovar;
+			Slovarik slovar;
 			slovar.add("banana", "banan");
 			Assert::AreEqual(1, slovar.getSize());
 			slovar.add("Mango", "mango");
@@ -21,7 +21,7 @@ namespace SlovarikTest
 
 		TEST_METHOD(TranslateTest)
 		{
-			Dictionary slovar;
+			Slovarik slovar;
 			slovar.add("apple", "yabloko");
 			string word = slovar["apple"];
 			string word_1 = "yabloko";
@@ -30,7 +30,7 @@ namespace SlovarikTest
 
 		TEST_METHOD(DeleteTest)
 		{
-			Dictionary slovar;
+			Slovarik slovar;
 			slovar.add("pine apple", "grusha");
 			string word = "grusha";
 			Assert::AreEqual(slovar.find("pine apple"), word);
@@ -40,7 +40,7 @@ namespace SlovarikTest
 
 		TEST_METHOD(ChangeTest)
 		{
-			Dictionary slovar;
+			Slovarik slovar;
 			slovar.add("abergine", "kabachok");
 			slovar.changeTranslation("aubergine", "baklazhan");
 			Assert::IsTrue(slovar["aubergine"] == "baklazhan");
@@ -48,7 +48,7 @@ namespace SlovarikTest
 
 		TEST_METHOD(FileTest)
 		{
-			Dictionary slovar;
+			Slovarik slovar;
 			slovar.loadFile("C:/users/ivanm/desktop/Pernikov/Slovarik/UnitTest1/slovar.txt");
 			Assert::AreEqual(slovar.find("pine-apple"), (string)"grusha");
 		}

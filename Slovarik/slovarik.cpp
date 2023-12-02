@@ -8,7 +8,7 @@ Slovo::Slovo(string eng, string rus)
     this->right = nullptr;
 }
 
-Slovo* Dictionary::add(Slovo* slovo, string eng, string rus)
+Slovo* Slovarik::add(Slovo* slovo, string eng, string rus)
 {
     if (slovo == nullptr) {
         this->size++;
@@ -26,7 +26,7 @@ Slovo* Dictionary::add(Slovo* slovo, string eng, string rus)
     return slovo;
 }
 
-Slovo* Dictionary::find(Slovo* slovo, string eng)
+Slovo* Slovarik::find(Slovo* slovo, string eng)
 {
     if (slovo == nullptr) {
         return nullptr;
@@ -42,7 +42,7 @@ Slovo* Dictionary::find(Slovo* slovo, string eng)
     }
 }
 
-Slovo* Dictionary::remove(Slovo* slovo, string eng) {
+Slovo* Slovarik::remove(Slovo* slovo, string eng) {
     if (slovo == nullptr) {
         return nullptr;
     }
@@ -78,26 +78,26 @@ Slovo* Dictionary::remove(Slovo* slovo, string eng) {
     return slovo;
 }
 
-Dictionary::Dictionary() {
+Slovarik::Slovarik() {
     root = nullptr;
 }
 
-int Dictionary::getSize()
+int Slovarik::getSize()
 {
     return size;
 }
 
-void Dictionary::add(string eng, string value) {
+void Slovarik::add(string eng, string value) {
     root = add(root, eng, value);
 }
 
-void Dictionary::add(const char* eng, const char* rus) {
+void Slovarik::add(const char* eng, const char* rus) {
     string engStr(eng);
     string rusStr(rus);
     add(engStr, rusStr);
 }
 
-string Dictionary::find(string eng) {
+string Slovarik::find(string eng) {
     Slovo* slovo = find(root, eng);
     if (slovo == nullptr) {
         return "";
@@ -107,7 +107,7 @@ string Dictionary::find(string eng) {
     }
 }
 
-string Dictionary::operator[](const string& eng) {
+string Slovarik::operator[](const string& eng) {
     Slovo* slovo = find(root, eng);
     if (slovo == nullptr)
     {
@@ -120,7 +120,7 @@ string Dictionary::operator[](const string& eng) {
     }
 }
 
-void Dictionary::changeTranslation(string eng, string newRus)
+void Slovarik::changeTranslation(string eng, string newRus)
 {
     Slovo* slovo = find(root, eng);
     if (slovo == nullptr)
@@ -129,11 +129,11 @@ void Dictionary::changeTranslation(string eng, string newRus)
         slovo->Rus = newRus;
 }
 
-void Dictionary::remove(string eng) {
+void Slovarik::remove(string eng) {
     root = remove(root, eng);
 }
 
-void Dictionary::loadFile(const string& filename)
+void Slovarik::loadFile(const string& filename)
 {
     ifstream file(filename);
     string Eng;
