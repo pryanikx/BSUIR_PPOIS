@@ -1,4 +1,4 @@
-﻿#include "slovarik.h"
+﻿#include "Slovarik.h"
 
 Slovo::Slovo(string eng, string rus)
 {
