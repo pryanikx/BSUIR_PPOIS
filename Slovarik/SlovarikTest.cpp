@@ -1,6 +1,6 @@
 
 #include "CppUnitTest.h"
-#include "..//Slovarik/slovarik.h"
+#include "..//Slovarik/Slovarik.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
