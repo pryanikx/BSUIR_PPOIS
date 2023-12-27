@@ -5,10 +5,7 @@ namespace Rent {
     class RentalTransaction {
     public:
         RentalTransaction(Equipment* equipment, Customer* customer, const std::wstring& rentalDate, int duration);
-        ~RentalTransaction()
-        {
-            // Destructor implementation, if needed
-        }
+        ~RentalTransaction() {}
 
         std::wstring displayInfo() const;
 
