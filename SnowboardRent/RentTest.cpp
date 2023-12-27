@@ -7,6 +7,8 @@
 #include "../Project2/RentalShop.cpp"
 #include "../Project2/RentalTransaction.cpp"
 #include "../Project2/Snowboard.cpp"
+#include "../Project2/Jacket.cpp"
+#include "../Project2/Goggles.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -121,6 +123,35 @@ namespace Rent
 
             Assert::IsTrue(availableEquipment.size() == 1);
             Assert::IsTrue(availableEquipment[0]->isAvailable());
+        }
+    };
+
+
+    TEST_CLASS(GogglesTest)
+    {
+    public:
+        TEST_METHOD(DisplayInfoTest)
+        {
+            Goggles goggles("Brand", "Model", "Size", true);
+            std::wstring result = goggles.displayInfo();
+            Assert::AreNotEqual(result.find(L"Brand"), std::wstring::npos);
+            Assert::AreNotEqual(result.find(L"Model"), std::wstring::npos);
+            Assert::AreNotEqual(result.find(L"Size"), std::wstring::npos);
+            Assert::AreNotEqual(result.find(L"Anti-Fog: Yes"), std::wstring::npos);
+        }
+    };
+
+    TEST_CLASS(JacketTest)
+    {
+    public:
+        TEST_METHOD(DisplayInfoTest)
+        {
+            Jacket jacket("Brand", "Model", "Size", 4);
+            std::wstring result = jacket.displayInfo();
+            Assert::AreNotEqual(result.find(L"Brand"), std::wstring::npos);
+            Assert::AreNotEqual(result.find(L"Model"), std::wstring::npos);
+            Assert::AreNotEqual(result.find(L"Size"), std::wstring::npos);
+            Assert::AreNotEqual(result.find(L"Warmth: 4"), std::wstring::npos);
         }
     };
 }
