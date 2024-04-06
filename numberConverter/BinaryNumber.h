@@ -3,8 +3,6 @@
 #include <vector>
 #include <algorithm>
 
-//namespace Converter
-//{
     class BinaryNumber {
     private:
         int num;
@@ -41,4 +39,3 @@
 
         std::vector <int> getRev();
     };
-//}

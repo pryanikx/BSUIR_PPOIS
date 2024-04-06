@@ -1,6 +1,5 @@
 #include "BinaryNumber.h"
 
-//using namespace Converter;
 BinaryNumber::BinaryNumber(int num)
 {
     this->num = num;
@@ -132,7 +131,6 @@ std::vector <int> BinaryNumber::divide(BinaryNumber& divisor) {
         }
     }
     remainder = Res.dir;
-    // Print the remainder
     std::cout << "Remainder: ";
     for (int i = 0; i < remainder.size(); i++) {
         std::cout << remainder[i];

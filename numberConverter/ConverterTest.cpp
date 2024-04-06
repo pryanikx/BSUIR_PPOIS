@@ -143,4 +143,3 @@ public:
         Assert::IsTrue(expectedSummary == binary32_1.summary(binary32_2));
     }
 };
-

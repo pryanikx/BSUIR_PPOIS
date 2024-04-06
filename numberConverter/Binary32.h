@@ -1,8 +1,6 @@
 #pragma once
 #include "BinaryNumber.h"
 
-//namespace Converter
-//{
     class Binary32
     {
     private:
@@ -40,4 +38,3 @@
         std::vector <int> getSign();
 
     };
-//}
